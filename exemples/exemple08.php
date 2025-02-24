@@ -10,6 +10,7 @@
     <title>
       Exemple <?php echo $noExemple; /* affiche la valeur de la variable */ ?>
     </title>
+    <link rel="stylesheet" href="../water.css">
   </head>
   <body>
     <h1>Exemple <?php echo $noExemple; /* affiche la valeur de la variable */ ?></h1>

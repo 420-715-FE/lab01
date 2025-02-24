@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Exemple 04</title>
+    <link rel="stylesheet" href="../water.css">
   </head>
   <body>
   <h1>Bonjour</h1>

@@ -18,6 +18,7 @@
     <title>
       Exemple <?php echo $noExemple; ?>
     </title>
+    <link rel="stylesheet" href="../water.css">
   </head>
   <body>
     <h1>Exemple <?php echo $noExemple; ?></h1>

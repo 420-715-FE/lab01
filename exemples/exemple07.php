@@ -5,6 +5,7 @@
     <html>
       <head>
         <title>Exemple 07</title>
+        <link rel="stylesheet" href="../water.css">
       </head>
       <body>
         <p>Le contenu de cette page est entièrement généré par PHP.</p>
