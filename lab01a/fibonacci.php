@@ -1,8 +1,8 @@
 <?php
 
-$nombre = $_GET['nombre'];
-$nombrePrecedent = $_GET['nombre'] - 1;
-$nombreSuivant = $nombre + 1;
+$n1 = $_GET['n1'];
+$n2 = $_GET['n2'];
+$n3 = $n1 + $n2;
 
 ?>
 
@@ -18,10 +18,10 @@ $nombreSuivant = $nombre + 1;
     <nav>
         <a href="index.html">Retour</a>
     </nav>
-    <ul>
-        <li><a href="?nombre=<?= $nombrePrecedent; ?>"><?= $nombrePrecedent; ?></a></li>
-        <li><?= $nombre; ?></li>
-        <li><a href="?nombre=<?= $nombreSuivant; ?>"><?= $nombreSuivant; ?></a></li>
-    </ul>
+    <h1>Fibonacci</h1>
+    <p>
+        <?= $n3; ?>
+        <a href="fibonacci.php?n1=<?= $n2; ?>&n2=<?= $n3; ?>">&gt;</a>
+    </p>
 </body>
 </html>
