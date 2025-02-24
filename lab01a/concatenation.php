@@ -16,7 +16,7 @@ $bonjour = "Bonjour $prenom $nom!";
 </head>
 <body>
     <nav>
-        <a href="index.html">Accueil</a>
+        <a href="index.html">Retour</a>
     </nav>       
     <p>     
         <?= $bonjour ?>

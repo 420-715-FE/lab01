@@ -30,7 +30,7 @@ $racineB = sqrt($b);
 </head>
 <body>
     <nav>
-        <a href="index.html">Accueil</a>
+        <a href="index.html">Retour</a>
     </nav>     
     <ul>
         <li><a href="?a=<?= $aPrecedent; ?>&b=<?= $bPrecedent; ?>">-</a></li>
