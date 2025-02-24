@@ -15,6 +15,7 @@ function formaterNombre($nombre) {
     <link rel="stylesheet" href="../water.css">
 </head>
 <body>
+    <nav><a href="../index.html">Retour</a></nav>
     <h1>Exemples</h1>
     <ul>
         <?php

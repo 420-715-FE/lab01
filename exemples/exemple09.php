@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="../water.css">
   </head>
   <body>
+    <nav><a href="index.php">Retour</a></nav>
     <h1>Exemple <?php echo $noExemple; ?></h1>
     <p>
       Le prix d'un <?php echo $nomProduit; ?> est de <?php echo $prix; ?> $.

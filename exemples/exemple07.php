@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="../water.css">
       </head>
       <body>
+        <nav><a href="index.php">Retour</a></nav>
         <p>Le contenu de cette page est entièrement généré par PHP.</p>
       </body>
     </html>
