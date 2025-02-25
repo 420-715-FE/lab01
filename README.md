@@ -165,3 +165,62 @@ Le nombre affiché doit être le nombre qui suit `n1` et `n2` dans la suite de F
 * 13
 
 Vous devez parvenir à ce résultat en utilisant chaque fois **uniquement** les paramètres `n1` et `n2`.
+
+## Partie 2
+
+Pour faire cette partie, vous devez avoir vu la matière du cours 2 sur les structures conditionnelles.
+
+Cette partie utilise les pages Web suivantes:
+
+* index.html
+* concatenation.php
+* precedent_suivant.php
+* arithmetique.php
+* fibonacci.php
+
+### 2.1 - Amélioration de la partie 1
+
+Retournez sur la page **Concaténation** dans votre navigateur. Retirez les paramètres `prenom` et `nom` dans la barre d'adresse, puis faites charger la page de nouveau. Que remarquez-vous?
+
+Il serait bien de détecter lorsque les paramètres sont manquants, et d'afficher un message d'erreur en conséquence. Pour ce faire, modifiez le code au début de la page de la façon suivante:
+
+```php
+<?php
+
+$erreur = false;
+
+if (isset($_GET['prenom']) && isset($_GET['nom'])) {
+    $prenom = $_GET['prenom'];
+    $nom = $_GET['nom'];
+    $bonjour = "Bonjour $prenom $nom!";
+} else {
+    $erreur = true;
+}
+
+?>
+```
+
+Puis modifiez le `body` de la manière suivante:
+
+```php
+<body>
+    <nav>
+        <a href="index.html">Retour</a>
+    </nav>       
+    <p>
+        <?php
+        if ($erreur) {
+            echo "Erreur: les paramètres 'prenom' et 'nom' sont obligatoires.";
+        } else {
+            echo $bonjour;
+        }
+        ?>
+    </p>
+</body>
+```
+
+Rechargez la page. Vous devriez maintenant voir le contenu suivant:
+
+![](images-readme/concatenation-erreur.png)
+
+Remettez les paramètres `prenom` et `nom`. La page devrait maintenant s'afficher comme avant.
