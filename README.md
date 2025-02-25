@@ -397,7 +397,7 @@ Une meilleure solution serait donc de déplacer notre code directement dans le `
 
 Remarquez qu'il faut tout de même fermer les balises `body` et `html` avant de faire le `exit`, mais ça reste du code beaucoup moins répétitif que dans la version précédente.
 
-Nous aurions bien sûr aussi pu inverser nos conditions (cela est une question de préférence personnelle):
+Nous aurions aussi pu inverser notre condition de façon à avoir seulement un `if` pour le cas d'erreur, sans `else`:
 
 ```php
 <!DOCTYPE html>
@@ -419,9 +419,9 @@ Nous aurions bien sûr aussi pu inverser nos conditions (cela est une question d
         echo "<p>Erreur: Les paramètres 'a' et 'b' sont obligatoires.</p>";
         echo '</body></html>';
         exit;
-    } else {
-        // (votre code qui fait les calculs)     
-    }
+    } 
+    
+    // (votre code qui fait les calculs)
 
     ?>
 
@@ -440,6 +440,22 @@ Nous aurions bien sûr aussi pu inverser nos conditions (cela est une question d
 </html>
 ```
 
-Dans cette version, notre `if` gère le cas d'erreur, et c'est le `else` qui gère le cas correct. Assurez-vous de bien comprendre la condition dans les deux cas.
+Assurez-vous de bien comprendre la condition dans les deux cas.
 
 Nous avons vu plusieurs façons de coder la même validation. Choisissez celle que vous préférez pour faire l'équivalent dans `fibonacci.php`. Testez votre code rigoureusement.
+
+### 2.2 - Validation des paramètres numériques
+
+Nous avons amélioré nos scripts de la partie 1 en ajoutant quelques validations, mais il en manque encore.
+
+Retournez sur la page **Précédent-Suivant**. Que se passe-t-il si vous remplacer la valeur du paramètre `nombre` par `bonjour` ?
+
+Vous obtenez une erreur, parce qu'on ne peut pas effectuer d'opérations mathématiques sur `bonjour` !
+
+Il faut donc ajouter des validations supplémentaires pour vérifier que les paramètres reçus sont numériques.
+
+En PHP, il est possible de vérifier qu'une variable `$a` est numérique de la façon suivante:
+
+`if (is_numeric($a))`
+
+Adaptez le code de **precedent_suivant.php** de façon à afficher un message d'erreur approprié si le nombre reçu en paramètre n'est pas numérique. Testez ensuite votre code rigoureusement. Lorsque tout fonctionne, faites la même chose pour **Arithmétique** et **Fibonacci**.

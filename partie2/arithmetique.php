@@ -17,25 +17,29 @@
         echo "<p>Erreur: Les paramètres 'a' et 'b' sont obligatoires.</p>";
         echo '</body></html>';
         exit;
-    } else {
-        $a = $_GET['a'];
-        $b = $_GET['b'];
-
-        $addition = $a + $b;
-        $soustraction = $a - $b;
-        $multiplication = $a * $b;
-        $division = $a / $b;
-        $modulo = $a % $b;
-
-        $aPrecedent = $a - 1;
-        $aSuivant = $a + 1;
-        $bPrecedent = $b - 1;
-        $bSuivant = $b + 1;
-        $aCarre = $a ** 2;
-        $bCarre = $b ** 2;
-        $racineA = sqrt($a);
-        $racineB = sqrt($b);        
+    } else if (!is_numeric($_GET['a']) || !is_numeric($_GET['b'])) {
+        echo "<p>Erreur: Les paramètres 'a' et 'b' doivent être des nombres.</p>";
+        echo '</body></html>';
+        exit;
     }
+
+    $a = $_GET['a'];
+    $b = $_GET['b'];
+
+    $addition = $a + $b;
+    $soustraction = $a - $b;
+    $multiplication = $a * $b;
+    $division = $a / $b;
+    $modulo = $a % $b;
+
+    $aPrecedent = $a - 1;
+    $aSuivant = $a + 1;
+    $bPrecedent = $b - 1;
+    $bSuivant = $b + 1;
+    $aCarre = $a ** 2;
+    $bCarre = $b ** 2;
+    $racineA = sqrt($a);
+    $racineB = sqrt($b);
 
     ?>
 

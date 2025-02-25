@@ -1,9 +1,12 @@
 <?php
 
-$erreur = false;
+$erreurParametreAbsent = false;
+$erreurParametreInvalide = false;
 
 if (!isset($_GET['nombre'])) {
-    $erreur = true;
+    $erreurParametreAbsent = true;
+} else if (!is_numeric($_GET['nombre'])) {
+    $erreurParametreInvalide = true;
 } else {
     $nombre = $_GET['nombre'];
     $nombrePrecedent = $_GET['nombre'] - 1;
@@ -26,8 +29,10 @@ if (!isset($_GET['nombre'])) {
     </nav>
     <?php
 
-    if ($erreur) {
+    if ($erreurParametreAbsent) {
         echo "<p>Erreur: le paramètre 'nombre' est manquant.</p>";
+    } else if ($erreurParametreInvalide) {
+        echo "<p>Erreur: le paramètre 'nombre' doit être un nombre.</p>";
     } else {
     ?>
 

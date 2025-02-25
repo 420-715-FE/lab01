@@ -17,6 +17,10 @@
         echo "<p>Erreur: Les paramètres 'n1' et 'n2' sont obligatoires.</p>";
         echo '</body></html>';
         exit;
+    } else if (!is_numeric($_GET['n1']) || !is_numeric($_GET['n2'])) {
+        echo "<p>Erreur: Les paramètres 'n1' et 'n2' doivent être des nombres.</p>";
+        echo '</body></html>';
+        exit;
     }
 
     $n1 = $_GET['n1'];
