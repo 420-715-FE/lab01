@@ -179,6 +179,7 @@ Cette partie utilise les pages Web suivantes:
 * precedent_suivant.php
 * arithmetique.php
 * fibonacci.php
+* rotisserie.php
 
 ### 2.1 - Validation de la présence des paramètres de la partie 1
 
@@ -459,3 +460,37 @@ En PHP, il est possible de vérifier qu'une variable `$a` est numérique de la f
 `if (is_numeric($a))`
 
 Adaptez le code de **precedent_suivant.php** de façon à afficher un message d'erreur approprié si le nombre reçu en paramètre n'est pas numérique. Testez ensuite votre code rigoureusement. Lorsque tout fonctionne, faites la même chose pour **Arithmétique** et **Fibonacci**.
+
+### 2.3 - Rotisserie
+
+Retournez à la page d'accueil et cliquez sur **Rotisserie**.
+
+Si vous regardez dans la barre d'adresse, vous constaterez que le fichier correspondant à cette page est `rotisserie.php` et que les paramètres suivants sont passés dans l'URL:
+
+* `prenom=Bob`
+* `repas=1`
+* `accompagnement=2`
+* `salade=2`
+* `ustensiles=0`
+* `type=1`
+* `paiement=1`
+
+Le contenu à générer pour ces paramètres est le suivant:
+
+![](images-readme/rotisserie.png)
+
+Vous l'avez deviné, il s'agit d'une page qui simule une commande de poulet dans une rotisserie!
+
+Voici les règles à respecter dans la programmation de la page:
+
+* Tous les paramètres doivent être validés.
+* Les valeurs possibles pour le paramètre `repas` sont `1` et `2`. La valeur `1` signifie **Poitrine** et la valeur `2` signifie **Cuisse**.
+* Les valeurs possibles pour le paramètre `accompagnement` sont `1` et `2`. La valeur `1` signifie **frites** et la valeur `2` signifie **riz**.
+* Les valeurs possibles pour `salade` sont `1` et `2`. La valeur `1` signifie **crémeuse** et la valeur `2` signifie **traditionnelle**.
+* Les valeurs possibles pour `ustensiles` sont `0` et `1`. La valeur `0` signifie que le client n'a pas besoin d'ustensiles, et la valeur `1` signifie qu'il veut des ustensiles.
+* Les valeurs possibles pour `type` sont `1` et `2`. La valeur `1` signifie que la commande est pour une livraison, et la valeur `2` signifie qu'il s'agit d'une commande pour emporter.
+* Le paramètre `paiement` est obligatoire uniquement si le type de commande est une livraison. Dans ce cas, une valeur de `paiement` de `1` signifie un paiement en argent comptant, et une valeur de `2` signifie un paiement par carte. Si le type de commande est pour emporter, la page ne doit pas afficher le type de paiement.
+
+Bonne chance!
+
+Testez votre code rigoureusement. Lorsque vous avez terminé, comparez votre code avec celui de la solution.
