@@ -13,7 +13,6 @@ Vous familiariser avec les notions de base de PHP. Le laboratoire est divisé en
 
 ### Partie 2
 
-* Les variables booléennes
 * Les structures conditionnelles
 * Les opérateurs logiques
 
@@ -30,30 +29,96 @@ Ouvrez ensuite le dossier `lab01` dans Visual Studio Code.
 Cette partie utilise les 5 pages Web suivantes:
 
 * index.html
-* arithmetique.php
 * concatenation.php
 * precedent_suivant.php
+* arithmetique.php
 * fibonacci.php
 
-### 1.1 - Arithmétique
+### 1.1 - Concaténation
 
-Dans votre navigateur, cliquez sur **Arithmétique**. Vous devriez voir une page contenant seulement un lien de retour.
+Dans votre navigateur, cliquez sur **Concaténation**. Vous devriez voir une page contenant seulement un lien de retour.
 
-Regardez dans la barre d'adresse. Vous remarquerez que le fichier PHP correspondant à la page est `arithmetique.php`, et que deux variables ont été passées via l'URL: `a=2` et `b=4`.
+Regardez dans la barre d'adresse. Vous constaterez que le fichier PHP correspondant à la page est `concatenation.php` et que deux **paramètres** ont été passés dans l'URL: `prenom=Carlo` et `nom=Tentacule`.
 
-Accédez au fichier `arithmetique.php` dans votre IDE (Visual Studio Code).
+Accédez au fichier `concatenation.php` dans votre IDE (Visual Studio Code).
 
-Vous voulez modifier ce fichier afin d'ajouter le contenu suivant sur la page:
+Ajoutez les lignes de code suivante au tout début du fichier (au-dessus de la balise `<html>`):
+
+```php
+<?php
+
+$prenom = $_GET['prenom'];
+$nom = $_GET['nom'];
+$bonjour = "Bonjour $prenom $nom!";
+
+?>
+```
+
+Ces lignes de code prennent le prénom et le nom dans l'URL, puis les **concatènent** à l'intérieur de la variable `$bonjour`, en les précédant du texte `Bonjour `, et en les suivant du caractère `!`. Pour les valeurs `Carlo` et `Tentacule`, le résultat sera `Bonjour Carlo Tentacule!`.
+
+Une autre façon de faire la même chose aurait été la suivante:
+
+```php
+$bonjour = 'Bonjour ' . $prenom . ' ' .  $nom . '!';
+```
+
+Actualisez la page dans votre navigateur. Que remarquez-vous?
+
+Rien bien sûr! La page n'a pas changé, puisque nous n'y avons rien affiché de nouveau. Nous avons simplement manipulé des variables.
+
+Référez-vous aux exemples vus en classe pour afficher le contenu de la variable `$bonjour` sous le lien `Retour`. Voici un aperçu du résultat que vous devriez obtenir avec les valeurs actuelles:
+
+![](images-readme/concatenation.png)
+
+Une fois que votre page fonctionne, changez les valeurs passées dans l'URL et observez le résultat. Le texte affiché à l'écran devrait changer.
+
+### 1.2 - Précédent-Suivant
+
+Dans votre navigateur, retournez à la page d'accueil en cliquant sur **Retour**. Accédez ensuite à la page **Précédent-Suivant**.
+
+Regardez dans la barre d'adresse. Vous remarquerez que le fichier PHP correspondant à la page est `precedent_suivant.php`, et qu'un paramètre `nombre` a été passée dans l'URL.
+
+Accédez au fichier `precedent_suivant.php` dans votre IDE.
+
+Vous devez modifier ce fichier afin d'ajouter le contenu suivant sur la page:
+
+![](images-readme/precedent_suivant.png)
+
+Pour ce faire, commencez par ajouter le code suivant au début du fichier:
+
+```php
+<?php
+
+$nombre = $_GET['nombre'];
+$nombrePrecedent = $_GET['nombre'] - 1;
+$nombreSuivant = $nombre + 1;
+
+?>
+```
+
+Ce code crée d'abord une variable `$nombre` contenant le paramètre `nombre` passé dans l'URL. Il crée ensuite une variable `$nombrePrecedent` contenant le nombre qui précède `$nombre`, et une variable `$nombreSuivant` contenant le nombre qui le suit.
+
+Modifiez maintenant le contenu du `body` afin d'afficher la liste des trois nombres. Le premier élément de la liste doit être un lien vers la même page, avec `$nombrePrecedent` passé comme valeur du paramètre `nombre`. Le troisième élément doit faire la même chose avec le nombre suivant.
+
+### 1.3 - Arithmétique
+
+Dans votre navigateur, retournez à la page d'accueil en cliquant sur **Retour**. Accédez ensuite à la page **Arithmétique**.
+
+Regardez dans la barre d'adresse. Vous remarquerez que le fichier PHP correspondant à la page est `arithmetique.php`, et que deux paramètres ont été passés dans l'URL: `a=2` et `b=4`.
+
+Accédez au fichier `arithmetique.php` dans votre IDE.
+
+Vous devez modifier ce fichier afin d'ajouter le contenu suivant sur la page:
 
 ![](images-readme/arithmetique.png)
 
-Voici comment la page doit se comporter:
+Voici le comportement attendu de la page:
 
-* Les deuxième à cinquième éléments de la liste à puces doivent montrer respectivement l'addition, la soustraction, la multiplication, la division et le modulo des deux variables reçues dans l'URL.
+* Les deuxième à sixième éléments de la liste à puces doivent montrer respectivement l'addition, la soustraction, la multiplication, la division et le modulo des deux variables reçues dans l'URL.
 * Le symbole `-` du premier élément de la liste doit être un lien vers la même page, mais avec les paramètres décrémentés de 1. Par exemple, si `a` vaut 2 et que `b` vaut 4, leurs nouvelles valeurs seront 1 et 3 respectivement.
-* L'élément avec le symbole `+` est un lien semblable au `-`, mais qui incrémente chaque variable de 1 au lieu de la décrémenter.
-* L'élément `^2` met au carré chacune des deux variables.
-* L'élément `√` remplace chacune des deux variables par sa racine.
+* L'élément avec le symbole `+` est un lien semblable au `-`, mais qui incrémente chaque paramètre de 1 au lieu de le décrémenter.
+* L'élément `^2` met au carré chacun des deux paramètres.
+* L'élément `√` remplace chacun des deux paramètres par sa racine.
 
 Référez-vous aux exemples vus en classe pour répondre à la demande.
 
