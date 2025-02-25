@@ -1,37 +1,44 @@
-<?php
-
-$a = $_GET['a'];
-$b = $_GET['b'];
-
-$addition = $a + $b;
-$soustraction = $a - $b;
-$multiplication = $a * $b;
-$division = $a / $b;
-$modulo = $a % $b;
-
-$aPrecedent = $a - 1;
-$aSuivant = $a + 1;
-$bPrecedent = $b - 1;
-$bSuivant = $b + 1;
-$aCarre = $a ** 2;
-$bCarre = $b ** 2;
-$racineA = sqrt($a);
-$racineB = sqrt($b);
-
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laboratoire 01-A</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <title>Laboratoire 01</title>
+    <link rel="stylesheet" href="water.css">
 </head>
 <body>
     <nav>
         <a href="index.html">Retour</a>
-    </nav>     
+    </nav>
+
+    <?php
+
+    if (!isset($_GET['a']) || !isset($_GET['b'])) {
+        echo "<p>Erreur: Les paramètres 'a' et 'b' sont obligatoires.</p>";
+        echo '</body></html>';
+        exit;
+    } else {
+        $a = $_GET['a'];
+        $b = $_GET['b'];
+
+        $addition = $a + $b;
+        $soustraction = $a - $b;
+        $multiplication = $a * $b;
+        $division = $a / $b;
+        $modulo = $a % $b;
+
+        $aPrecedent = $a - 1;
+        $aSuivant = $a + 1;
+        $bPrecedent = $b - 1;
+        $bSuivant = $b + 1;
+        $aCarre = $a ** 2;
+        $bCarre = $b ** 2;
+        $racineA = sqrt($a);
+        $racineB = sqrt($b);        
+    }
+
+    ?>
+
     <ul>
         <li><a href="?a=<?= $aPrecedent; ?>&b=<?= $bPrecedent; ?>">-</a></li>
         <li><?= $a ?> + <?= $b ?> = <?= $addition ?></li>

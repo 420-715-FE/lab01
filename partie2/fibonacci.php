@@ -1,11 +1,3 @@
-<?php
-
-$n1 = $_GET['n1'];
-$n2 = $_GET['n2'];
-$n3 = $n1 + $n2;
-
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -19,6 +11,19 @@ $n3 = $n1 + $n2;
         <a href="index.html">Retour</a>
     </nav>
     <h1>Fibonacci</h1>
+    <?php
+
+    if (!isset($_GET['n1']) || !isset($_GET['n2'])) {
+        echo "<p>Erreur: Les paramètres 'n1' et 'n2' sont obligatoires.</p>";
+        echo '</body></html>';
+        exit;
+    }
+
+    $n1 = $_GET['n1'];
+    $n2 = $_GET['n2'];
+    $n3 = $n1 + $n2;
+
+    ?>    
     <p>
         <?= $n3; ?>
         <a href="fibonacci.php?n1=<?= $n2; ?>&n2=<?= $n3; ?>">&gt;</a>

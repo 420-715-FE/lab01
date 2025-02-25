@@ -166,6 +166,8 @@ Le nombre affiché doit être le nombre qui suit `n1` et `n2` dans la suite de F
 
 Vous devez parvenir à ce résultat en utilisant chaque fois **uniquement** les paramètres `n1` et `n2`.
 
+Comparez votre code de la partie 1 avec celui de la solution avant de passer à la partie 2.
+
 ## Partie 2
 
 Pour faire cette partie, vous devez avoir vu la matière du cours 2 sur les structures conditionnelles.
@@ -178,7 +180,7 @@ Cette partie utilise les pages Web suivantes:
 * arithmetique.php
 * fibonacci.php
 
-### 2.1 - Amélioration de la partie 1
+### 2.1 - Validation de la présence des paramètres de la partie 1
 
 Retournez sur la page **Concaténation** dans votre navigateur. Retirez les paramètres `prenom` et `nom` dans la barre d'adresse, puis faites charger la page de nouveau. Que remarquez-vous?
 
@@ -209,11 +211,13 @@ Puis modifiez le `body` de la manière suivante:
     </nav>       
     <p>
         <?php
+
         if ($erreur) {
             echo "Erreur: les paramètres 'prenom' et 'nom' sont obligatoires.";
         } else {
             echo $bonjour;
         }
+
         ?>
     </p>
 </body>
@@ -224,3 +228,218 @@ Rechargez la page. Vous devriez maintenant voir le contenu suivant:
 ![](images-readme/concatenation-erreur.png)
 
 Remettez les paramètres `prenom` et `nom`. La page devrait maintenant s'afficher comme avant.
+
+De la même façon, modifiez le code au début de `precedent_suivant.php` ainsi:
+
+```php
+<?php
+
+$erreur = false;
+
+if (!isset($_GET['nombre'])) {
+    $erreur = true;
+} else {
+    $nombre = $_GET['nombre'];
+    $nombrePrecedent = $_GET['nombre'] - 1;
+    $nombreSuivant = $nombre + 1;
+}
+
+?>
+```
+
+Adaptez ensuite le `body`. Cette fois-ci, puisqu'il y a plusieurs lignes de HTML à afficher, il serait avantageux de fermer la balise PHP au début du `else`, puis de la réouvrir à la fin. Par exemple:
+
+```php
+<body>
+    <nav>
+        <a href="index.html">Retour</a>
+    </nav>
+    <?php
+
+    if ($erreur) {
+        echo "<p>Erreur: le paramètre 'nombre' est manquant.</p>";
+        exit;
+    } else {
+    ?>
+
+        <ul>
+            <li><a href="?nombre=<?= $nombrePrecedent; ?>"><?= $nombrePrecedent; ?></a></li>
+            <li><?= $nombre; ?></li>
+            <li><a href="?nombre=<?= $nombreSuivant; ?>"><?= $nombreSuivant; ?></a></li>
+        </ul>        
+
+    <?php
+    }
+
+    ?>
+</body>
+```
+
+Une autre façon de gérer l'erreur aurait été d'utiliser l'instruction `exit` pour arrêter l'interprétation du code dès qu'une erreur est détectée. C'est ce que nous allons faire pour la page `arithmetique.php`.
+
+Présentement, vous avez probablement du code PHP au début du fichier. Par exemple:
+
+```php
+<?php
+
+$a = $_GET['a'];
+$b = $_GET['b'];
+
+// (votre code qui fait les calculs)
+
+?>
+```
+
+Vous pourriez placer ce code dans un `if (isset(...) && ...)`, puis traiter l'erreur directement dans le `else` avec un `exit`. Cela ressemblerait à ceci:
+
+```php
+<?php
+
+if (isset($_GET['a']) && isset($_GET['b'])) {
+    $a = $_GET['a'];
+    $b = $_GET['b'];
+
+    // (votre code qui fait les calculs)
+} else {
+    echo "Erreur: Les paramètres 'a' et 'b' sont obligatoires.";
+    exit;
+}
+
+?>
+```
+
+Adaptez votre code de cette façon, puis testez votre détection d'erreur. Que remarquez-vous?
+
+La page a perdu son titre (`<title>`) et son style! Si vous affichez le code source de la page dans votre navigateur, vous comprendrez pourquoi.
+
+Voyez-vous, PHP ne fait rien d'autre que générer du HTML et l'envoyer au navigateur. Dans ce cas-ci, tout ce que nous avons envoyé au navigateur, c'est un message d'erreur, avec aucune balise HTML. Ce n'est pas ce que nous voulons!
+
+Une première solution possible serait d'ajouter du HTML de base directement dans le `else`:
+
+```php
+if (isset($_GET['a']) && isset($_GET['b'])) {
+    $a = $_GET['a'];
+    $b = $_GET['b'];
+
+    // (votre code qui fait les calculs)
+} else {
+    ?>
+
+    <!DOCTYPE html>
+    <html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Laboratoire 01</title>
+        <link rel="stylesheet" href="water.css">
+    </head>
+    <body>
+        <nav>
+            <a href="index.html">Retour</a>
+        </nav>     
+        <p>Erreur: Les paramètres 'a' et 'b' sont obligatoires.</p>
+    </body>
+    </html>
+    
+    <?php
+
+    exit;
+}
+```
+
+Le problème avec cette approche c'est que nous répétons le code HTML de base à deux endroits sur la page. Ça fait donc du code à maintenir en double si jamais on veut changer le titre de la page, la feuille de style liée, etc. Nous voulons éviter cela.
+
+Une meilleure solution serait donc de déplacer notre code directement dans le `body`:
+
+```php
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratoire 01</title>
+    <link rel="stylesheet" href="water.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Retour</a>
+    </nav>
+
+    <?php
+
+    if (isset($_GET['a']) && isset($_GET['b'])) {
+        $a = $_GET['a'];
+        $b = $_GET['b'];
+
+        // (votre code qui fait les calculs)
+    } else {
+        echo "<p>Erreur: Les paramètres 'a' et 'b' sont obligatoires.</p>";
+        echo '</body></html>';
+        exit;
+    }
+
+    ?>
+
+    <ul>
+        <li><a href="?a=<?= $aPrecedent; ?>&b=<?= $bPrecedent; ?>">-</a></li>
+        <li><?= $a ?> + <?= $b ?> = <?= $addition ?></li>
+        <li><?= $a ?> - <?= $b ?> = <?= $soustraction ?></li>
+        <li><?= $a ?> * <?= $b ?> = <?= $multiplication ?></li>
+        <li><?= $a ?> / <?= $b ?> = <?= $division ?></li>
+        <li><?= $a ?> % <?= $b ?> = <?= $modulo ?></li>
+        <li><a href="?a=<?= $aSuivant; ?>&b=<?= $bSuivant; ?>">+</a></li>
+        <li><a href="?a=<?= $aCarre; ?>&b=<?= $bCarre; ?>">^2</a></li>
+        <li><a href="?a=<?= $racineA; ?>&b=<?= $racineB; ?>">√</a></li>
+    </ul>
+</body>
+</html>
+```
+
+Remarquez qu'il faut tout de même fermer les balises `body` et `html` avant de faire le `exit`, mais ça reste du code beaucoup moins répétitif que dans la version précédente.
+
+Nous aurions bien sûr aussi pu inverser nos conditions (cela est une question de préférence personnelle):
+
+```php
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratoire 01</title>
+    <link rel="stylesheet" href="water.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Retour</a>
+    </nav>
+
+    <?php
+
+    if (!isset($_GET['a']) || !isset($_GET['b'])) {
+        echo "<p>Erreur: Les paramètres 'a' et 'b' sont obligatoires.</p>";
+        echo '</body></html>';
+        exit;
+    } else {
+        // (votre code qui fait les calculs)     
+    }
+
+    ?>
+
+    <ul>
+        <li><a href="?a=<?= $aPrecedent; ?>&b=<?= $bPrecedent; ?>">-</a></li>
+        <li><?= $a ?> + <?= $b ?> = <?= $addition ?></li>
+        <li><?= $a ?> - <?= $b ?> = <?= $soustraction ?></li>
+        <li><?= $a ?> * <?= $b ?> = <?= $multiplication ?></li>
+        <li><?= $a ?> / <?= $b ?> = <?= $division ?></li>
+        <li><?= $a ?> % <?= $b ?> = <?= $modulo ?></li>
+        <li><a href="?a=<?= $aSuivant; ?>&b=<?= $bSuivant; ?>">+</a></li>
+        <li><a href="?a=<?= $aCarre; ?>&b=<?= $bCarre; ?>">^2</a></li>
+        <li><a href="?a=<?= $racineA; ?>&b=<?= $racineB; ?>">√</a></li>
+    </ul>
+</body>
+</html>
+```
+
+Dans cette version, notre `if` gère le cas d'erreur, et c'est le `else` qui gère le cas correct. Assurez-vous de bien comprendre la condition dans les deux cas.
+
+Nous avons vu plusieurs façons de coder la même validation. Choisissez celle que vous préférez pour faire l'équivalent dans `fibonacci.php`. Testez votre code rigoureusement.
