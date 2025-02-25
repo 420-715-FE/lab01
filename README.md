@@ -129,3 +129,39 @@ Le code pour calculer le carré d'une variable `$a` est le suivant:
 Le code pour calculer la racine carrée d'une variable `$a` est le suivant:
 
 `$racineA = sqrt($a);`
+
+### 1.4 - Fibonacci
+
+La suite de Fibonacci est une suite mathématique dans laquelle chaque nombre est la somme des deux nombres précédents. Ses 7 premiers éléments sont les suivants:
+
+* 0
+* 1
+* 1
+* 2
+* 3
+* 5
+* 8
+
+Les deux premiers éléments sont 0 et 1, puis le troisième élément est 1 (soit la somme de 0 et 1), suivi de 2 (1 + 1), puis de 3 (1 + 2), puis de 5 (2 + 3), et ainsi de suite.
+
+[Suite de Fibonacci sur Wikipédia](https://fr.wikipedia.org/wiki/Suite_de_Fibonacci)
+
+Dans votre navigateur, retournez à la page d'accueil en cliquant sur **Retour**. Accédez ensuite à la page **Fibonacci**.
+
+Regardez dans la barre d'adresse. Vous remarquerez que le fichier PHP correspondant à la page est `fibonacci.php`, et que deux paramètres ont été passés dans l'URL: `n1=0` et `n2=1`. Comme vous pouvez voir, les deux valeurs correspondent aux deux premiers éléments de la suite de Fibonacci.
+
+Accédez au fichier `fibonacci.php` dans votre IDE.
+
+Vous devez modifier la page de façon à produire l'affichage suivant:
+
+![](images-readme/fibonacci1.png)
+
+Le nombre affiché doit être le nombre qui suit `n1` et `n2` dans la suite de Fibonacci. Chaque fois qu'on clique sur le lien `>`, on doit obtenir le nombre suivant dans la suite. Donc, dans notre exemple, si on clique 5 fois sur le lien, nous obtiendrons les valeurs suivantes:
+
+* 2
+* 3
+* 5
+* 8
+* 13
+
+Vous devez parvenir à ce résultat en utilisant chaque fois **uniquement** les paramètres `n1` et `n2`.
