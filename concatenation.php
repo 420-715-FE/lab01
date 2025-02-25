@@ -1,11 +1,3 @@
-<?php
-
-$prenom = $_GET['prenom'];
-$nom = $_GET['nom'];
-$bonjour = "Bonjour $prenom $nom!";
-
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -17,9 +9,6 @@ $bonjour = "Bonjour $prenom $nom!";
 <body>
     <nav>
         <a href="index.html">Retour</a>
-    </nav>       
-    <p>     
-        <?= $bonjour ?>
-    </p>
+    </nav>
 </body>
 </html>

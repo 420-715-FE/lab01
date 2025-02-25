@@ -154,7 +154,7 @@ Accédez au fichier `fibonacci.php` dans votre IDE.
 
 Vous devez modifier la page de façon à produire l'affichage suivant:
 
-![](images-readme/fibonacci1.png)
+![](images-readme/fibonacci.png)
 
 Le nombre affiché doit être le nombre qui suit `n1` et `n2` dans la suite de Fibonacci. Chaque fois qu'on clique sur le lien `>`, on doit obtenir le nombre suivant dans la suite. Donc, dans notre exemple, si on clique 5 fois sur le lien, nous obtiendrons les valeurs suivantes:
 
