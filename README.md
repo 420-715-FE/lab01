@@ -76,7 +76,7 @@ Une fois que votre page fonctionne, changez les valeurs passées dans l'URL et o
 
 Dans votre navigateur, retournez à la page d'accueil en cliquant sur **Retour**. Accédez ensuite à la page **Précédent-Suivant**.
 
-Regardez dans la barre d'adresse. Vous remarquerez que le fichier PHP correspondant à la page est `precedent_suivant.php`, et qu'un paramètre `nombre` a été passée dans l'URL.
+Regardez dans la barre d'adresse. Vous remarquerez que le fichier PHP correspondant à la page est `precedent_suivant.php`, et qu'un paramètre `nombre` a été passé dans l'URL.
 
 Accédez au fichier `precedent_suivant.php` dans votre IDE.
 
