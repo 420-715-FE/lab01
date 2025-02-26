@@ -20,7 +20,7 @@ if (!isset($_GET['nombre'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retour</title>
+    <title>Laboratoire 01</title>
     <link rel="stylesheet" href="water.css">
 </head>
 <body>
